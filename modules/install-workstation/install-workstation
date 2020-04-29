@@ -1,0 +1,59 @@
+#!/bin/bash
+
+################
+###
+### Initial installation of archlinux instance
+###     * This script should run on a basic archlinux installation
+###     * Please read the script before running it, there are some gotchas involved
+###     * The instance created is designed to work in a private subnet, keep that in mind
+###     * This script is designed to be run by root
+###
+###
+###
+################
+
+
+log() {
+        echo '$@' 2>&1 >1 | tee /var/log/archlinux-workstation
+}
+
+# log_to_file() {
+#         local log_file=${@[0]}
+#         echo ${} 2>&1 >1 > $LOG_FILE
+# }
+# 
+# 
+# prepare_system() {
+#         mkdir /var/log/workstation
+#         LOG_FILE=/var/log/arch
+# }
+
+PACKAGES = ('wget' 'git' 'unzip' 'vim' 'screenfetch'
+            'tmux' 'rsync' 'subversion' 'rclone'
+            'python3-pip' 'python-pip' 'nmap'
+            'zip')
+
+
+update_system() {
+        pacman -Syyu
+}
+
+install_packages() {
+        local packages = $@
+        local output = ""
+        for package in packages; do
+                output=$(pacman -S ${package})
+                log ${output}
+        done
+}
+
+prepare_system() {
+        update_system
+        install_packages $PACKAGES
+}
+
+main() {
+        prepare_system
+}
+
+main
