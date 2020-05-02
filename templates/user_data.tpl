@@ -7,6 +7,7 @@
 prepare_env()
 {
         echo 'export PATH=$PATH:/home/arch/.local/bin' >> /home/arch/.bashrc
+        pacman -Sy --noconfirm git
 }
 
 install_workstation_private_key()

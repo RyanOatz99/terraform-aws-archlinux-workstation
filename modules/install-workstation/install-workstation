@@ -14,7 +14,7 @@
 
 
 log() {
-        echo '$@' 2>&1 >1 | tee /var/log/archlinux-workstation
+        echo '$@' 2>&1 | tee /var/log/archlinux-workstation
 }
 
 # log_to_file() {
@@ -28,21 +28,21 @@ log() {
 #         LOG_FILE=/var/log/arch
 # }
 
-PACKAGES = ('wget' 'git' 'unzip' 'vim' 'screenfetch'
-            'tmux' 'rsync' 'subversion' 'rclone'
-            'python3-pip' 'python-pip' 'nmap'
-            'zip')
+PACKAGES=("wget" "git" "unzip" "vim" "screenfetch"
+          "tmux" "rsync" "subversion" "rclone"
+          "python3-pip" "python-pip" "nmap"
+          "zip")
 
 
 update_system() {
-        pacman -Syyu
+        pacman -Syyu --noconfirm
 }
 
 install_packages() {
-        local packages = $@
-        local output = ""
+        local packages=$@
+        local output=""
         for package in $packages; do
-                output=$(pacman -S ${package})
+                output=$(pacman -S --noconfirm ${package})
                 log ${output}
         done
 }
