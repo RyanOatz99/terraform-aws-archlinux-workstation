@@ -27,6 +27,6 @@ variable "ssh_key_name" {
 }
 
 variable "archlinux_lts_ami_id" {
-  default = "ami-074508ad6e83609f9"
+  default = "ami-01d988fc8ed4684e6"
   description = "Archlinux official image from uplinklabs"
 }

@@ -12,7 +12,7 @@ prepare_env()
 
 install_workstation_private_key()
 {
-cat << 'EOF' > /home/arch/.ssh/id_pub
+cat << 'EOF' > /home/arch/.ssh/id_rsa
 ${workstation_private_key}
 EOF
 }
