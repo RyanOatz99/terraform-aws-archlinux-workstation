@@ -57,14 +57,14 @@ resource "aws_security_group" "workstation_sg" {
 }
 
 data "template_file" "user_data" {
-  template = "${file("${path.module}/templates/user_data.tpl")}"
+  template = file("${path.module}/templates/user_data.tpl")
   vars = {
     workstation_private_key = var.workstation_private_key
   }
 }
 
 resource "aws_instance" "workstation" {
-  ami           = "${data.aws_ami.archlinux.id}"
+  ami           = data.aws_ami.archlinux.id
   instance_type = var.instance_type
 
   tags = {
